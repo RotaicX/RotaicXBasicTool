@@ -19,7 +19,7 @@ var Rlog rlog
 
 func (r *rlog) Println(printData string) error {
 	r.getNowTime()
-	printLogData := fmt.Sprintf("%s %s\n", r.nowTime, printData)
+	printLogData := fmt.Sprintf("%s \u001B[33m[INFO]\u001B[0m %s\n", r.nowTime, printData)
 
 	if r.SaveToFile {
 		return r.saveToFile(printLogData)
