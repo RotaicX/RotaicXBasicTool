@@ -18,8 +18,18 @@ type rlog struct {
 var Rlog rlog
 
 func (r *rlog) Println(printData string) error {
+	printPackStr := "\u001B[33m[%s] [INFO]: %s\u001B[0m\n"
+	return r.basicPrintf(printPackStr, printData)
+}
+
+func (r *rlog) Errorln(printData string) error {
+	printPackStr := "\u001B[32m[%s] [INFO]: %s\u001B[0m\n"
+	return r.basicPrintf(printPackStr, printData)
+}
+
+func (r *rlog) basicPrintf(printPackStr string, printData string) error {
 	r.getNowTime()
-	printLogData := fmt.Sprintf("\u001B[33m[%s] [INFO]: %s\u001B[0m\n", r.nowTime, printData)
+	printLogData := fmt.Sprintf(printPackStr, r.nowTime, printData)
 
 	if r.SaveToFile {
 		return r.saveToFile(printLogData)
