@@ -23,7 +23,7 @@ func (r *rlog) Println(printData interface{}) error {
 }
 
 func (r *rlog) Errorln(printData interface{}) error {
-	printPackStr := "\u001B[32m[%s] [INFO]: %s\u001B[0m\n"
+	printPackStr := "\u001B[32m[%s] [ERROR]: %s\u001B[0m\n"
 	return r.basicPrintf(printPackStr, printData)
 }
 
