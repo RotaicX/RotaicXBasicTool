@@ -31,8 +31,11 @@ func (r *rlog) basicPrintf(printPackStr string, printData interface{}) error {
 	r.getNowTime()
 	printLogData := fmt.Sprintf(printPackStr, r.nowTime, printData.(string))
 
-	if r.SaveToFile {
-		return r.saveToFile(printLogData)
+	if r.SaveToFile == true {
+		err := r.saveToFile(printLogData)
+		if err != nil {
+			return err
+		}
 	}
 	fmt.Printf(printLogData)
 
